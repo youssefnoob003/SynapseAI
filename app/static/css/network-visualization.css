@@ -1,0 +1,139 @@
+/* Network Visualization Styles */
+
+/* Arrowhead styles */
+.arrowhead {
+    fill: #d9d9d9;
+    stroke: none;
+}
+
+/* Legend styles */
+.legend i {
+    font-size: 0.8em;
+    margin-right: 0.3em;
+}
+
+/* Node styles */
+.node {
+    cursor: default;
+}
+
+.node circle {
+    fill-opacity: 1;
+    stroke: #fff;
+    stroke-width: 1.5px;
+}
+
+.node text {
+    pointer-events: none;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.link {
+    stroke: #999;
+    stroke-opacity: 0.6;
+}
+
+/* Network graph container */
+#networkGraph {
+    background-color: #fafafa;
+    background-image: radial-gradient(#e0e0e0 1px, transparent 1px);
+    background-size: 50px 50px;
+    border: none;
+    height: 600px;
+    position: relative;
+    overflow: visible;
+    min-width: 300px;
+}
+
+/* Legend styling */
+.legend {
+    font-size: 0.9em;
+    color: #666;
+    letter-spacing: 0.02em;
+}
+
+/* Date slider styling */
+#dateSliderContainer {
+    height: 60px;
+    padding: 10px 0;
+}
+
+#dateSliderTrack {
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    position: relative;
+    height: 40px;
+    width: 100%;
+}
+
+.date-marker {
+    position: absolute;
+    top: 0;
+    width: 2px;
+    height: 10px;
+    background-color: #ccc;
+    transform: translateX(-50%);
+    transition: all 0.2s ease;
+}
+
+.date-marker.active {
+    background-color: #2a9d8f;
+    height: 16px;
+}
+
+.date-label {
+    position: absolute;
+    top: 18px;
+    left: 0;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    color: #888;
+    white-space: nowrap;
+}
+
+.date-marker.active .date-label {
+    color: #2a9d8f;
+    font-weight: 600;
+}
+
+/* Custom range input styling */
+input[type=range] {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 5px;
+    background: transparent;
+    cursor: pointer;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #2a9d8f;
+    border: 2px solid white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    cursor: grab;
+}
+
+input[type=range]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #2a9d8f;
+    border: 2px solid white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    cursor: grab;
+}
+
+input[type=range]:active::-webkit-slider-thumb {
+    cursor: grabbing;
+}
+
+input[type=range]:active::-moz-range-thumb {
+    cursor: grabbing;
+}

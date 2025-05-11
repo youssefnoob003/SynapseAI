@@ -9,3 +9,4 @@ matplotlib
 datasets
 huggingface_hub
 python-dotenv
+gpt4all
