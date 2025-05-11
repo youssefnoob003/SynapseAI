@@ -25,9 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const width = networkContainer.clientWidth || 800; // Fallback if clientWidth is 0
     const height = 600;
     const nodeRadius = 24; // Slightly smaller for a more modern look
-    const nodePadding = 5;
-
-    // Modern color palette - using a muted, sophisticated palette
+    const nodePadding = 5;    // Modern color palette - using a muted, sophisticated palette
     const modernPalette = [
         '#264653', // Dark cyan
         '#2a9d8f', // Teal
@@ -41,7 +39,12 @@ document.addEventListener('DOMContentLoaded', function() {
         '#0b525b'  // Deep teal
     ];
 
-    // Use a more modern color scale
+    // Security score color scale - from red (low security) to green (high security)
+    const securityColorScale = d3.scaleLinear()
+        .domain([0.33, 0.5, 0.66, 1])
+        .range(['#e63946', '#f4a261', '#a8dadc', '#2a9d8f']);
+
+    // Use a more modern color scale for fallback colors when security score isn't available
     const colors = d3.scaleOrdinal(modernPalette);
 
     console.log('Container dimensions:', { width, height });
@@ -156,8 +159,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log(JSON.stringify(obj, null, 2));
             console.log(`--- END ${label} ---`);
             return obj; // Pass through the object for chaining
-        }
-          const nodes = Array.from(nodesSet).map(name => {
+        }          const nodes = Array.from(nodesSet).map(name => {
             const connections = nodeLinkCount.get(name) || 0;
             
             // More sophisticated name processing for better fit
@@ -182,11 +184,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 displayName = name;
             }
             
+            // Look up security score if available
+            const securityScore = window.securityScores && window.securityScores[name.toLowerCase()] !== undefined 
+                ? window.securityScores[name.toLowerCase()] 
+                : null;
+            
             return { 
                 id: name, 
                 name: name,
                 displayName: displayName,
                 fullName: name, // Keep original full name for tooltips
+                securityScore: securityScore, // Add security score
                 connections: connections,
                 radius: nodeScale(connections) + (displayName.length * 0.8), // Dynamic radius based on name length
                 // Explicitly add coordinates
@@ -216,13 +224,37 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Add explanatory text for the log scale to the UI
         console.log(`Link values range from ${minLinkValue} to ${maxLinkValue} (log scaled for visibility)`)
-        
-        // Create gradient definitions for node aesthetics
+          // Create gradient definitions for node aesthetics - now with security score coloring
         const createGradientDefs = () => {
             graphData.nodes.forEach(node => {
                 const colorId = node.id.replace(/[^a-zA-Z0-9]/g, '_');
                 const gradientId = `gradient-${colorId}`;
-                const nodeColor = colors(node.id);
+                
+                // Get security score for this node
+                const nodeIdLower = node.id.toLowerCase();
+                const securityScore = window.securityScores && window.securityScores[nodeIdLower] !== undefined 
+                    ? window.securityScores[nodeIdLower] 
+                    : null;
+                
+                // Store security score in node object for reference
+                node.securityScore = securityScore;
+                
+                // Determine node color based on security score if available, otherwise use default color scheme
+                let nodeColor;
+                if (securityScore !== null) {
+                    nodeColor = securityColorScale(securityScore);
+                    // Add security score class for reference
+                    if (securityScore < 0.33) {
+                        node.securityClass = 'low-security';
+                    } else if (securityScore < 0.66) {
+                        node.securityClass = 'medium-security';
+                    } else {
+                        node.securityClass = 'high-security';
+                    }
+                } else {
+                    nodeColor = colors(node.id);
+                    node.securityClass = 'unknown-security';
+                }
                 
                 // Create slightly darker version of the color for gradient
                 const darkerColor = d3.color(nodeColor).darker(0.5);
@@ -246,6 +278,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     .attr("stop-opacity", 1);
                     
                 node.gradientId = gradientId;
+                node.baseColor = nodeColor; // Store the base color for reference
             });
         };// More nuanced scales for visual elements - using enhanced logarithmic scale for link width
         const linkWidthScale = d3.scaleLog()
@@ -334,23 +367,40 @@ document.addEventListener('DOMContentLoaded', function() {
                         (l.target.id === d.id && l.source.id === n.id)
                     ) ? 1 : 0.4);
                     
-                // Show tooltip with full name if it's different from displayName
-                if (d.fullName && d.fullName !== d.displayName) {
-                    // Create or update tooltip
-                    let tooltip = d3.select('#node-tooltip');
-                    if (tooltip.empty()) {
-                        tooltip = d3.select('body').append('div')
-                            .attr('id', 'node-tooltip')
-                            .attr('class', 'node-tooltip');
+                // Create or update tooltip
+                let tooltip = d3.select('#node-tooltip');
+                if (tooltip.empty()) {
+                    tooltip = d3.select('body').append('div')
+                        .attr('id', 'node-tooltip')
+                        .attr('class', 'node-tooltip');
+                }
+                
+                // Build tooltip content with full name and security score
+                let tooltipContent = d.fullName || d.name;
+                
+                // Add security score info if available
+                if (d.securityScore !== null && d.securityScore !== undefined) {
+                    const scorePercent = Math.round(d.securityScore * 100);
+                    let securityLevel;
+                    if (d.securityScore < 0.33) {
+                        securityLevel = 'Low';
+                    } else if (d.securityScore < 0.66) {
+                        securityLevel = 'Medium';
+                    } else if (d.securityScore < 0.85) {
+                        securityLevel = 'Good';
+                    } else {
+                        securityLevel = 'Excellent';
                     }
                     
-                    // Position and show tooltip
-                    tooltip
-                        .style('left', (event.pageX + 10) + 'px')
-                        .style('top', (event.pageY - 30) + 'px')
-                        .style('display', 'block')
-                        .html(d.fullName);
+                    tooltipContent += `<br/><span class="security-score ${d.securityClass}">Security: ${securityLevel} (${scorePercent}%)</span>`;
                 }
+                
+                // Position and show tooltip
+                tooltip
+                    .style('left', (event.pageX + 10) + 'px')
+                    .style('top', (event.pageY - 30) + 'px')
+                    .style('display', 'block')
+                    .html(tooltipContent);
                 
                 // Apply scale effect to current node
                 d3.select(this).select('circle')
@@ -376,11 +426,21 @@ document.addEventListener('DOMContentLoaded', function() {
                     .transition().duration(200)
                     .attr('r', d => d.radius)
                     .style('stroke-width', 2);
-            });        // Add enhanced aesthetic node design with gradients and proper sizing for name fit
+            });        // Add enhanced aesthetic node design with gradients and security-based coloring
         nodesSelection.append('circle')
             .attr('r', d => d.radius || nodeRadius)
             .style('fill', d => d.gradientId ? `url(#${d.gradientId})` : colors(d.id))
-            .style('stroke', '#ffffff')
+            .style('stroke', d => {
+                // Add stroke color based on security class for additional visual cue
+                if (d.securityClass === 'low-security') {
+                    return '#e63946';
+                } else if (d.securityClass === 'medium-security') {
+                    return '#f4a261';
+                } else if (d.securityClass === 'high-security') {
+                    return '#2a9d8f';
+                }
+                return '#ffffff';
+            })
             .style('stroke-width', 2)
             .style('opacity', 0.95)
             .style('filter', 'drop-shadow(0px 2px 3px rgba(0,0,0,0.15))');// Add text labels showing the names with enhanced styling for better fit

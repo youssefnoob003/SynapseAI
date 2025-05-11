@@ -19,15 +19,24 @@
                             <h6 class="text-muted mb-0">Data for period: <span id="currentPeriod" class="fw-medium"></span></h6>
                         </div>                        <div class="col-md-6 text-md-end mt-3 mt-md-0">
                             <div class="legend small">
-                                <span class="me-3"><i class="bi bi-circle-fill text-primary"></i> Team Member</span>
-                                <span class="me-3">
-                                    <svg width="40" height="12" class="d-inline-block align-middle me-1">
-                                        <line x1="0" y1="6" x2="10" y2="6" stroke="#2a9d8f" stroke-width="1.5" />
-                                        <line x1="15" y1="6" x2="25" y2="6" stroke="#2a9d8f" stroke-width="3" />
-                                        <line x1="30" y1="6" x2="40" y2="6" stroke="#2a9d8f" stroke-width="6" />
-                                    </svg>
-                                    Line Weight (Log Scale)
-                                </span>
+                                <div class="mb-2">
+                                    <span class="me-3"><i class="bi bi-circle-fill text-primary"></i> Team Member</span>
+                                    <span class="me-3">
+                                        <svg width="40" height="12" class="d-inline-block align-middle me-1">
+                                            <line x1="0" y1="6" x2="10" y2="6" stroke="#2a9d8f" stroke-width="1.5" />
+                                            <line x1="15" y1="6" x2="25" y2="6" stroke="#2a9d8f" stroke-width="3" />
+                                            <line x1="30" y1="6" x2="40" y2="6" stroke="#2a9d8f" stroke-width="6" />
+                                        </svg>
+                                        Line Weight (Log Scale)
+                                    </span>
+                                </div>
+                                <div>
+                                    <span class="me-2">Security Score:</span>
+                                    <span class="me-2"><svg width="12" height="12"><circle cx="6" cy="6" r="6" fill="#e63946"/></svg> Low</span>
+                                    <span class="me-2"><svg width="12" height="12"><circle cx="6" cy="6" r="6" fill="#f4a261"/></svg> Medium</span>
+                                    <span class="me-2"><svg width="12" height="12"><circle cx="6" cy="6" r="6" fill="#a8dadc"/></svg> Good</span>
+                                    <span class="me-2"><svg width="12" height="12"><circle cx="6" cy="6" r="6" fill="#2a9d8f"/></svg> Excellent</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -78,8 +87,9 @@
 <script src="https://d3js.org/d3.v7.min.js"></script>
 
 <script>
-// Pass collaboration data from Flask to JavaScript
+// Pass collaboration data and security scores from Flask to JavaScript
 window.collaborationData = {{ collaboration_data | tojson | safe }};
+window.securityScores = {{ security_scores | tojson | safe }};
 </script>
 
 <!-- Network visualization script -->

@@ -1,7 +1,7 @@
 from flask import render_template, jsonify, request, redirect
 from app import app
 from app.mock_data import (
-    dashboard_summary
+    dashboard_summary, employees
 )
 from app.utils import load_users, send_phishing_campaign
 import json
@@ -11,9 +11,38 @@ import json
 def dashboard():
     with open("app\\security.json", "r") as file:
         security_alerts = json.load(file)
+    
+    # Get top 3 employees by score
+    top_by_score = sorted(employees, key=lambda x: x['score'], reverse=True)[:3]
+    
+    # Get top 3 employees by tasks completed
+    top_by_tasks = sorted(employees, key=lambda x: x['tasks_completed'], reverse=True)[:3]
+    
+    # Calculate average scores by department from users.json
+    users = load_users()
+    department_scores = {}
+    department_counts = {}
+    
+    for user in users:
+        role = user['role']
+        score = user['score']
+        if role not in department_scores:
+            department_scores[role] = 0
+            department_counts[role] = 0
+        department_scores[role] += score
+        department_counts[role] += 1
+    
+    # Calculate averages
+    for role in department_scores:
+        if department_counts[role] > 0:
+            department_scores[role] = round(department_scores[role] / department_counts[role], 1)
+    
     return render_template('dashboard.html', 
                          summary=dashboard_summary,
-                         recent_alerts=security_alerts[:2])
+                         recent_alerts=security_alerts[:2],
+                         top_by_score=top_by_score,
+                         top_by_tasks=top_by_tasks,
+                         department_scores=department_scores)
 
 @app.route('/performance')
 def performance():
@@ -21,10 +50,19 @@ def performance():
 
 @app.route('/collaboration')
 def collaboration():
+    # Load collaboration data
     with open('numpy_numpy_monthly_collaboration.json', 'r') as file:
         collaboration_data = json.load(file)
+    
+    # Load users data for security scores
+    users = load_users()
+    
+    # Create a dictionary mapping usernames to security scores
+    security_scores = {user['name'].lower(): user['security_score'] for user in users}
+    
     return render_template('collaboration.html', 
-                         collaboration_data=collaboration_data)
+                         collaboration_data=collaboration_data,
+                         security_scores=security_scores)
 
 @app.route('/security')
 def security():

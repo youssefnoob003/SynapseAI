@@ -49,6 +49,55 @@
     background-color: rgba(45, 55, 72, 0.9);
     color: white;
     border-radius: 6px;
+    z-index: 1000;
+    pointer-events: none;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+}
+
+.security-score {
+    display: block;
+    margin-top: 4px;
+    padding-top: 4px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    font-weight: 500;
+}
+
+.low-security {
+    color: #e63946;
+}
+
+.medium-security {
+    color: #f4a261;
+}
+
+.high-security {
+    color: #2a9d8f;
+
+    z-index: 1000;
+    pointer-events: none;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+}
+
+/* Security score classes for tooltip */
+.security-score {
+    display: block;
+    margin-top: 4px;
+    padding-top: 4px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    font-weight: 500;
+}
+
+.low-security {
+    color: #e63946;
+}
+
+.medium-security {
+    color: #f4a261;
+}
+
+.high-security {
+    color: #2a9d8f;
+
     pointer-events: none;
     z-index: 100;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
