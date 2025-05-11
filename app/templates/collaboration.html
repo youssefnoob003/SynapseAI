@@ -1,0 +1,539 @@
+{% extends "layout.html" %}
+
+{% block title %}Collaboration Network{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <!-- Network Visualization Card -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="card-title h4 mb-4">Team Collaboration Network</h2>
+                    <div class="row align-items-center mb-4">
+                        <div class="col-md-6">
+                            <label for="timeSelector" class="form-label">Select Time Period:</label>
+                            <select id="timeSelector" class="form-select">
+                                {% for month in collaboration_data.keys() | sort(reverse=true) %}
+                                <option value="{{ month }}">{{ month }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-6 text-md-end mt-3 mt-md-0">
+                            <div class="legend small">
+                                <span class="me-3"><i class="bi bi-circle-fill text-primary"></i> Team Member</span>
+                                <span><i class="bi bi-arrow-right"></i> Collaboration Strength</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="networkGraph" style="height: 600px; background-color: #f8f9fa;" class="rounded"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Collaboration Details Card -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="card-title h4 mb-4">Collaboration Details</h2>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>From</th>
+                                    <th>To</th>
+                                    <th>Interaction Count</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="collaborationTableBody">
+                                <!-- Table rows will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<!-- D3.js for network visualization -->
+<script src="https://d3js.org/d3.v7.min.js"></script>
+
+<script>
+// Pass collaboration data from Flask to JavaScript
+const collaborationData = {{ collaboration_data | tojson | safe }};
+console.log('Loaded collaboration data:', collaborationData);
+
+// Network visualization configuration
+const networkContainer = document.getElementById('networkGraph');
+const width = networkContainer.clientWidth || 800; // Fallback if clientWidth is 0
+const height = 600;
+const nodeRadius = 30;
+const colors = d3.scaleOrdinal(d3.schemeCategory10);
+
+console.log('Container dimensions:', { width, height });
+
+// Initialize the SVG with explicit dimensions
+const svg = d3.select('#networkGraph')
+    .append('svg')
+    .attr('width', '100%')
+    .attr('height', height)
+    .attr('viewBox', `0 0 ${width} ${height}`)
+    .attr('preserveAspectRatio', 'xMidYMid meet');
+
+// Create arrow marker for directed edges
+svg.append('defs').append('marker')
+    .attr('id', 'arrowhead')
+    .attr('viewBox', '-5 -5 10 10')
+    .attr('refX', nodeRadius)
+    .attr('refY', 0)
+    .attr('markerWidth', 6)
+    .attr('markerHeight', 6)
+    .attr('orient', 'auto')
+    .append('path')
+    .attr('d', 'M -5,-5 L 5,0 L -5,5')
+    .attr('class', 'arrowhead');
+
+// Create the force simulation with more separation
+const simulation = d3.forceSimulation()
+    .force('link', d3.forceLink().id(d => d.id).distance(150)) // Increased distance
+    .force('charge', d3.forceManyBody().strength(-500)) // Stronger repulsion
+    .force('center', d3.forceCenter(width / 2, height / 2))
+    .force('collision', d3.forceCollide().radius(nodeRadius * 1.8)) // Larger collision radius
+    .alphaDecay(0.02); // Slower cooling for better positioning
+
+// Text wrapping function for node labels
+function wrap(text, width) {
+    text.each(function() {
+        const text = d3.select(this);
+        const words = text.text().split(/\s+/).reverse();
+        const lineHeight = 1.1;
+        const y = text.attr('y');
+        const dy = parseFloat(text.attr('dy'));
+        let line = [];
+        let lineNumber = 0;
+        let tspan = text.text(null).append('tspan').attr('x', 0).attr('y', y).attr('dy', dy + 'em');
+        
+        let word;
+        while (word = words.pop()) {
+            line.push(word);
+            tspan.text(line.join(' '));
+            if (line.join(' ').length > 10) {
+                line.pop();
+                tspan.text(line.join(' '));
+                line = [word];
+                tspan = text.append('tspan').attr('x', 0).attr('y', y).attr('dy', ++lineNumber * lineHeight + dy + 'em').text(word);
+            }
+        }
+    });
+}
+
+// Drag functions
+function dragstarted(event) {
+    if (!event.active) simulation.alphaTarget(0.3).restart();
+    event.subject.fx = event.subject.x;
+    event.subject.fy = event.subject.y;
+}
+
+function dragged(event) {
+    event.subject.fx = event.x;
+    event.subject.fy = event.y;
+}
+
+function dragended(event) {
+    if (!event.active) simulation.alphaTarget(0);
+    event.subject.fx = null;
+    event.subject.fy = null;
+}
+
+function updateNetwork(monthData) {
+    if (!monthData) {
+        console.error('No month data available:', monthData);
+        return;
+    }
+    
+    console.log('Month data received:', monthData);
+    
+    // Process the data
+    const nodesSet = new Set();
+    monthData.forEach(link => {
+        nodesSet.add(link.from);
+        nodesSet.add(link.to);
+    });
+    
+    const graphData = {
+        nodes: Array.from(nodesSet).map(name => ({ id: name, name: name })),
+        links: monthData.map(d => ({
+            source: d.from,
+            target: d.to,
+            value: d.count
+        }))
+    };
+    
+    console.log('Graph data processed:', graphData);
+
+    // Update the visualization
+    const maxLinkValue = d3.max(graphData.links, d => d.value);
+    const linkScale = d3.scaleLinear()
+        .domain([1, maxLinkValue])
+        .range([1, 8]);
+
+    // Clear previous elements
+    svg.selectAll('*').remove();
+    
+    // Re-append the defs with minimalist marker
+    const defs = svg.append('defs');
+    
+    // Create minimalist arrowhead marker
+    defs.append('marker')
+        .attr('id', 'arrowhead')
+        .attr('viewBox', '0 -3 6 6')
+        .attr('refX', nodeRadius + 8) // Position farther from the node
+        .attr('refY', 0)
+        .attr('markerWidth', 4)
+        .attr('markerHeight', 4)
+        .attr('orient', 'auto')
+        .append('path')
+        .attr('d', 'M0,-3L6,0L0,3')
+        .attr('class', 'arrowhead');
+
+    // Create minimalist links
+    const linksSelection = svg.append('g')
+        .attr('class', 'links')
+        .selectAll('line')
+        .data(graphData.links)
+        .enter()
+        .append('line')
+        .attr('class', 'link')
+        .style('stroke', '#e0e0e0') // Light gray for minimalist look
+        .style('stroke-opacity', 0.4)
+        .style('stroke-width', d => Math.max(1, linkScale(d.value) * 0.7)) // Thinner lines
+        .style('stroke-dasharray', '1, 0'); // No dash for cleaner look
+
+    // Create nodes group with modern, minimalist design
+    const nodesSelection = svg.append('g')
+        .attr('class', 'nodes')
+        .selectAll('.node')
+        .data(graphData.nodes)
+        .enter()
+        .append('g')
+        .attr('class', 'node')
+        .call(d3.drag()
+            .on('start', dragstarted)
+            .on('drag', dragged)
+            .on('end', dragended));
+
+    // Add minimalist node design
+    const nodeSize = nodeRadius * 0.9; // Slightly smaller for a more refined look
+    
+    // Add outer rings (thin borders)
+    nodesSelection.append('circle')
+        .attr('r', nodeSize + 3)
+        .style('fill', 'none')
+        .style('stroke', d => d3.rgb(colors(d.id)).brighter(0.5))
+        .style('stroke-width', 1)
+        .style('stroke-opacity', 0.3);
+    
+    // Add main node circles with flat colors
+    nodesSelection.append('circle')
+        .attr('r', nodeSize)
+        .style('fill', d => d3.rgb(colors(d.id)).brighter(0.2))
+        .style('stroke', 'white')
+        .style('stroke-width', 1.5)
+        .style('opacity', 0.9)
+        .on('mouseover', function(event, d) {
+            d3.select(this)
+                .transition()
+                .duration(300)
+                .attr('r', nodeSize * 1.05)
+                .style('stroke-width', 2)
+                .style('opacity', 1);
+        })
+        .on('mouseout', function(event, d) {
+            d3.select(this)
+                .transition()
+                .duration(300)
+                .attr('r', nodeSize)
+                .style('stroke-width', 1.5)
+                .style('opacity', 0.9);
+        });
+
+    // Add minimalist labels
+    nodesSelection.append('text')
+        .attr('dy', '.4em')
+        .attr('text-anchor', 'middle')
+        .text(d => d.name.split(' ')[0]) // Just first name for minimalism
+        .style('fill', 'white')
+        .style('font-weight', '500')
+        .style('font-size', '11px')
+        .style('font-family', "'Inter', sans-serif")
+        .style('letter-spacing', '0.02em')
+        .style('pointer-events', 'none');
+
+    // Add tooltip div to body
+    const tooltip = d3.select('#networkGraph')
+        .append('div')
+        .attr('class', 'node-tooltip')
+        .style('opacity', 0);
+
+    // Add tooltip behavior to nodes
+    nodesSelection
+        .on('mousemove', function(event, d) {
+            const connections = graphData.links.filter(link => 
+                link.source.id === d.id || link.source === d.id || 
+                link.target.id === d.id || link.target === d.id
+            ).length;
+            
+            tooltip.html(`
+                <strong>${d.name}</strong><br/>
+                <span style="opacity: 0.7">${connections} connections</span>
+            `)
+            .style('left', (event.pageX + 10) + 'px')
+            .style('top', (event.pageY - 20) + 'px')
+            .transition().duration(200)
+            .style('opacity', 1);
+        })
+        .on('mouseout', function() {
+            tooltip.transition().duration(300)
+                .style('opacity', 0);
+        });
+
+    // Add subtle interactivity and animation to the network visualization
+    nodesSelection
+        .on('mouseover', function(event, d) {
+            // Subtle highlighting of connected nodes and links
+            const nodeId = d.id;
+            
+            // Find connected links and nodes
+            const connectedLinks = graphData.links.filter(link => 
+                link.source.id === nodeId || link.source === nodeId || 
+                link.target.id === nodeId || link.target === nodeId
+            );
+            
+            const connectedNodes = new Set();
+            connectedLinks.forEach(link => {
+                const sourceId = link.source.id || link.source;
+                const targetId = link.target.id || link.target;
+                if (sourceId !== nodeId) connectedNodes.add(sourceId);
+                if (targetId !== nodeId) connectedNodes.add(targetId);
+            });
+            
+            // Minimal dimming of non-connected elements
+            svg.selectAll('.node circle')
+                .transition().duration(200)
+                .style('opacity', 0.3);
+                
+            svg.selectAll('.link')
+                .transition().duration(200)
+                .style('opacity', 0.1);
+            
+            // Highlight this node with subtle effect
+            d3.select(this).select('circle:nth-child(2)') // The main circle
+                .transition().duration(200)
+                .style('opacity', 1);
+                
+            d3.select(this).select('circle:nth-child(1)') // The outer ring
+                .transition().duration(200)
+                .style('stroke-opacity', 0.8)
+                .style('stroke-width', 1.5);
+            
+            // Highlight connected nodes with minimal effect
+            connectedNodes.forEach(id => {
+                svg.selectAll('.node').filter(n => (n.id === id))
+                    .select('circle:nth-child(2)') // The main circle
+                    .transition().duration(200)
+                    .style('opacity', 0.7);
+            });
+            
+            // Highlight connected links with minimal effect
+            connectedLinks.forEach(link => {
+                svg.selectAll('.link').filter(l => 
+                    (l.source.id === link.source.id && l.target.id === link.target.id) ||
+                    (l.source === link.source && l.target === link.target)
+                )
+                .transition().duration(200)
+                .style('stroke', '#aaaaaa')
+                .style('opacity', 0.8)
+                .style('stroke-width', d => Math.max(1.5, linkScale(d.value) * 0.9));
+            });
+        })
+        .on('mouseout', function() {
+            // Reset all elements with smooth transition
+            svg.selectAll('.node circle:nth-child(2)') // Main circles
+                .transition().duration(300)
+                .style('opacity', 0.9);
+                
+            svg.selectAll('.node circle:nth-child(1)') // Outer rings
+                .transition().duration(300)
+                .style('stroke-opacity', 0.3)
+                .style('stroke-width', 1);
+                
+            svg.selectAll('.link')
+                .transition().duration(300)
+                .style('stroke', '#e0e0e0')
+                .style('opacity', 0.4)
+                .style('stroke-width', d => Math.max(1, linkScale(d.value) * 0.7));
+        });
+
+    // Define the tick function
+    function ticked() {
+        // Keep nodes within bounds
+        graphData.nodes.forEach(node => {
+            node.x = Math.max(nodeRadius, Math.min(width - nodeRadius, node.x || width/2));
+            node.y = Math.max(nodeRadius, Math.min(height - nodeRadius, node.y || height/2));
+        });
+        
+        // Update link positions
+        linksSelection
+            .attr('x1', d => d.source.x)
+            .attr('y1', d => d.source.y)
+            .attr('x2', d => d.target.x)
+            .attr('y2', d => d.target.y);
+
+        // Update node positions
+        nodesSelection
+            .attr('transform', d => `translate(${d.x},${d.y})`);
+    }
+
+    // Set fixed initial positions for nodes
+    const centerX = width / 2;
+    const centerY = height / 2;
+    const radius = Math.min(width, height) * 0.3;
+    
+    graphData.nodes.forEach((node, i) => {
+        const angle = (i / graphData.nodes.length) * 2 * Math.PI;
+        node.x = centerX + radius * Math.cos(angle);
+        node.y = centerY + radius * Math.sin(angle);
+    });
+
+    // Stop any ongoing simulation
+    simulation.stop();
+    
+    // Update simulation with new data
+    simulation.nodes(graphData.nodes);
+    simulation.force('link').links(graphData.links);
+    
+    // Set up the tick event
+    simulation.on('tick', ticked);
+    
+    // Call tick once to position elements immediately
+    ticked();
+    
+    // Restart the simulation with high energy
+    simulation.alpha(1).restart();
+    
+    console.log('Simulation restarted with nodes:', graphData.nodes.length);
+    
+    // Update the table
+    updateCollaborationTable(monthData);
+}
+
+function updateCollaborationTable(data) {
+    const tableBody = document.getElementById('collaborationTableBody');
+    tableBody.innerHTML = ''; // Clear previous content
+    
+    data.forEach(item => {
+        const row = document.createElement('tr');
+        
+        const fromCell = document.createElement('td');
+        fromCell.textContent = item.from;
+        row.appendChild(fromCell);
+        
+        const toCell = document.createElement('td');
+        toCell.textContent = item.to;
+        row.appendChild(toCell);
+        
+        const countCell = document.createElement('td');
+        countCell.textContent = item.count;
+        row.appendChild(countCell);
+        
+        const statusCell = document.createElement('td');
+        let badgeClass, statusText;
+        if (item.count >= 12) {
+            badgeClass = 'bg-success';
+            statusText = 'High';
+        } else if (item.count >= 8) {
+            badgeClass = 'bg-info';
+            statusText = 'Medium';
+        } else {
+            badgeClass = 'bg-warning';
+            statusText = 'Low';
+        }
+        
+        const badge = document.createElement('span');
+        badge.className = `badge ${badgeClass}`;
+        badge.textContent = statusText;
+        statusCell.appendChild(badge);
+        
+        row.appendChild(statusCell);
+        tableBody.appendChild(row);
+    });
+}
+
+// Handle time period selection
+document.getElementById('timeSelector').addEventListener('change', function(e) {
+    const selectedMonth = e.target.value;
+    updateNetwork(collaborationData[selectedMonth]);
+});
+
+// Initialize with the most recent month
+const months = Object.keys(collaborationData).sort();
+console.log('Available months:', months);
+const mostRecentMonth = months.length > 0 ? months[months.length - 1] : null;
+console.log('Most recent month:', mostRecentMonth);
+console.log('Data for most recent month:', collaborationData[mostRecentMonth]);
+
+if (mostRecentMonth) {
+    document.getElementById('timeSelector').value = mostRecentMonth;
+    updateNetwork(collaborationData[mostRecentMonth]);
+} else {
+    console.error('No months available in the data');
+}
+</script>
+
+<style>
+.arrowhead {
+    fill: #d0d0d0;
+    stroke: none;
+}
+
+.legend i {
+    font-size: 0.8em;
+    margin-right: 0.3em;
+}
+
+.node:hover {
+    cursor: pointer;
+}
+
+/* Minimalist animation for links */
+.link {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Clean background */
+#networkGraph {
+    background: linear-gradient(to bottom right, #fcfcfc, #f8f8f8) !important;
+    border: 1px solid #f0f0f0;
+}
+
+/* Minimalist tooltip style */
+.node-tooltip {
+    position: absolute;
+    padding: 8px 12px;
+    background: white;
+    border-radius: 4px;
+    font-size: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 1000;
+}
+</style>
+{% endblock %}

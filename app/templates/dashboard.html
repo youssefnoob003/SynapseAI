@@ -1,0 +1,207 @@
+{% extends "layout.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="d-flex align-items-center mb-4">
+    <h1 class="mb-0 flex-grow-1">
+        <i class="bi bi-speedometer2 me-2"></i>
+        Workforce Analytics Dashboard
+    </h1>
+    <button class="btn btn-primary d-flex align-items-center">
+        <i class="bi bi-download me-2"></i>
+        Export Report
+    </button>
+</div>
+
+<div class="row g-4">
+    <!-- Key Metrics -->
+    <div class="col-sm-6 col-lg-3">
+        <div class="card h-100">
+            <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="flex-shrink-0">
+                        <i class="bi bi-graph-up-arrow text-primary fs-3"></i>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <h6 class="card-subtitle text-muted mb-1">Performance Score</h6>
+                        <h2 class="card-title mb-0 text-primary">{{ summary.average_performance }}%</h2>
+                    </div>
+                </div>
+                <div class="progress" style="height: 4px;">
+                    <div class="progress-bar bg-primary" role="progressbar" style="width: {{ summary.average_performance }}%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-lg-3">
+        <div class="card h-100">
+            <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="flex-shrink-0">
+                        <i class="bi bi-check2-square text-success fs-3"></i>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <h6 class="card-subtitle text-muted mb-1">Tasks Completed</h6>
+                        <h2 class="card-title mb-0 text-success">{{ summary.total_tasks_completed }}</h2>
+                    </div>
+                </div>
+                <p class="card-text text-muted">
+                    <i class="bi bi-arrow-up-short"></i>
+                    <small>12% increase from last week</small>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-lg-3">
+        <div class="card h-100">
+            <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="flex-shrink-0">
+                        <i class="bi bi-folder2-open text-info fs-3"></i>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <h6 class="card-subtitle text-muted mb-1">Active Projects</h6>
+                        <h2 class="card-title mb-0 text-info">{{ summary.active_projects }}</h2>
+                    </div>
+                </div>
+                <p class="card-text text-muted">
+                    <i class="bi bi-calendar3"></i>
+                    <small>Updated today</small>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-lg-3">
+        <div class="card h-100">
+            <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="flex-shrink-0">
+                        <i class="bi bi-shield-exclamation text-danger fs-3"></i>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <h6 class="card-subtitle text-muted mb-1">Security Alerts</h6>
+                        <h2 class="card-title mb-0 text-danger">{{ summary.security_alerts_today }}</h2>
+                    </div>
+                </div>
+                <p class="card-text text-muted">
+                    <i class="bi bi-clock"></i>
+                    <small>Last 24 hours</small>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4 mt-2">
+    <!-- Productivity Trend -->
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                    <h5 class="card-title mb-0 flex-grow-1">
+                        <i class="bi bi-graph-up me-2"></i>
+                        Team Productivity Trend
+                    </h5>
+                    <div class="dropdown">
+                        <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-three-dots-vertical"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Last 7 Days</a></li>
+                            <li><a class="dropdown-item" href="#">Last 30 Days</a></li>
+                            <li><a class="dropdown-item" href="#">This Quarter</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="placeholder-box">
+                    <i class="bi bi-bar-chart-line fs-2 mb-2"></i>
+                    <p class="mb-0">Team productivity visualization placeholder</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Department Scores -->
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                    <h5 class="card-title mb-0 flex-grow-1">
+                        <i class="bi bi-pie-chart me-2"></i>
+                        Department Scores
+                    </h5>
+                    <button class="btn btn-light btn-sm">
+                        <i class="bi bi-arrow-clockwise"></i>
+                    </button>
+                </div>
+                <div class="placeholder-box">
+                    <i class="bi bi-pie-chart fs-2 mb-2"></i>
+                    <p class="mb-0">Department scores visualization placeholder</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <!-- Recent Alerts -->
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                    <h5 class="card-title mb-0 flex-grow-1">
+                        <i class="bi bi-shield-exclamation me-2"></i>
+                        Recent Security Alerts
+                    </h5>
+                    <button class="btn btn-light btn-sm">
+                        <i class="bi bi-filter"></i>
+                        Filter
+                    </button>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>User</th>
+                                <th>Time</th>
+                                <th>Severity</th>
+                                <th>Details</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for alert in recent_alerts %}
+                            <tr>
+                                <td>
+                                    <i class="bi {% if alert.type == 'Off-hours Access' %}bi-clock{% elif alert.type == 'Multiple Login Attempts' %}bi-shield-exclamation{% else %}bi-file-earmark-lock{% endif %} me-2"></i>
+                                    {{ alert.type }}
+                                </td>
+                                <td>{{ alert.user }}</td>
+                                <td>{{ alert.timestamp }}</td>
+                                <td>
+                                    <span class="badge rounded-pill bg-{{ 'danger' if alert.severity == 'high' else 'warning' if alert.severity == 'medium' else 'info' }}">
+                                        {{ alert.severity | title }}
+                                    </span>
+                                </td>
+                                <td>{{ alert.details }}</td>
+                                <td>
+                                    <button class="btn btn-light btn-sm">
+                                        <i class="bi bi-arrow-right"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

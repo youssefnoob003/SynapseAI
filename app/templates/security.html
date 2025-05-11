@@ -1,0 +1,183 @@
+{% extends "layout.html" %}
+
+{% block title %}Security{% endblock %}
+
+{% block content %}
+<div class="d-flex align-items-center mb-4">
+    <h1 class="mb-0 flex-grow-1">
+        <i class="bi bi-shield-check me-2"></i>
+        Security Analytics
+    </h1>
+    <div class="d-flex gap-2">
+        <button class="btn btn-light d-flex align-items-center">
+            <i class="bi bi-funnel me-2"></i>
+            Filter
+        </button>
+        <button class="btn btn-primary d-flex align-items-center">
+            <i class="bi bi-plus-lg me-2"></i>
+            New Alert Rule
+        </button>
+    </div>
+</div>
+
+<div class="row g-4">
+    <div class="col-md-6 col-xl-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="flex-shrink-0">
+                        <div class="rounded-circle bg-danger bg-opacity-10 p-3">
+                            <i class="bi bi-shield-exclamation text-danger fs-4"></i>
+                        </div>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <p class="text-muted mb-1">High Priority Alerts</p>
+                        <h3 class="mb-0">{{ alerts | selectattr("severity", "equalto", "high") | list | length }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 col-xl-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="flex-shrink-0">
+                        <div class="rounded-circle bg-warning bg-opacity-10 p-3">
+                            <i class="bi bi-shield text-warning fs-4"></i>
+                        </div>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <p class="text-muted mb-1">Medium Priority</p>
+                        <h3 class="mb-0">{{ alerts | selectattr("severity", "equalto", "medium") | list | length }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 col-xl-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="flex-shrink-0">
+                        <div class="rounded-circle bg-info bg-opacity-10 p-3">
+                            <i class="bi bi-shield-check text-info fs-4"></i>
+                        </div>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <p class="text-muted mb-1">Low Priority</p>
+                        <h3 class="mb-0">{{ alerts | selectattr("severity", "equalto", "low") | list | length }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 col-xl-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="flex-shrink-0">
+                        <div class="rounded-circle bg-success bg-opacity-10 p-3">
+                            <i class="bi bi-check-circle text-success fs-4"></i>
+                        </div>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <p class="text-muted mb-1">Resolved Today</p>
+                        <h3 class="mb-0">{{ alerts | length }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4 mt-2">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                    <h5 class="card-title mb-0 flex-grow-1">Security Incidents</h5>
+                    <div class="d-flex gap-2">
+                        <div class="input-group">
+                            <span class="input-group-text bg-light border-end-0">
+                                <i class="bi bi-search"></i>
+                            </span>
+                            <input type="text" class="form-control border-start-0 ps-0" placeholder="Search alerts...">
+                        </div>
+                        <button class="btn btn-light" title="Refresh">
+                            <i class="bi bi-arrow-clockwise"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>User</th>
+                                <th>Timestamp</th>
+                                <th>Severity</th>
+                                <th>Details</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for alert in alerts %}
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <span class="icon-wrapper rounded-circle me-2 p-1 bg-{{ 'danger' if alert.severity == 'high' else 'warning' if alert.severity == 'medium' else 'info' }} bg-opacity-10">
+                                            <i class="bi {% if alert.type == 'Off-hours Access' %}bi-clock{% elif alert.type == 'Multiple Login Attempts' %}bi-shield-exclamation{% else %}bi-file-earmark-lock{% endif %} text-{{ 'danger' if alert.severity == 'high' else 'warning' if alert.severity == 'medium' else 'info' }}"></i>
+                                        </span>
+                                        {{ alert.type }}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="avatar-initials rounded-circle bg-primary bg-opacity-10 text-primary p-2 me-2">
+                                            {{ alert.user[:2] }}
+                                        </div>
+                                        {{ alert.user }}
+                                    </div>
+                                </td>
+                                <td>
+                                    <i class="bi bi-clock me-1"></i>
+                                    {{ alert.timestamp }}
+                                </td>
+                                <td>
+                                    <span class="badge rounded-pill bg-{{ 'danger' if alert.severity == 'high' else 'warning' if alert.severity == 'medium' else 'info' }} bg-opacity-75">
+                                        {{ alert.severity | title }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="text-truncate d-inline-block" style="max-width: 300px;" title="{{ alert.details }}">
+                                        {{ alert.details }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-sm btn-light" title="Investigate">
+                                            <i class="bi bi-search"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-light" title="Resolve">
+                                            <i class="bi bi-check2"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-light" title="More">
+                                            <i class="bi bi-three-dots-vertical"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
