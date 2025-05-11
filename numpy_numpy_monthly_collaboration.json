@@ -3,1147 +3,1597 @@
         {
             "from": "elendiastarman",
             "to": "seberg",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 48,
+            "trustability": 63.0
         }
     ],
     "2015-04": [
         {
             "from": "elendiastarman",
             "to": "seberg",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 56,
+            "trustability": 61.5
         },
         {
             "from": "mhvk",
             "to": "pv",
-            "count": 2
+            "count": 2,
+            "cyber_awareness": 55,
+            "trustability": 62.5
         },
         {
             "from": "mhvk",
             "to": "charris",
-            "count": 2
+            "count": 2,
+            "cyber_awareness": 48,
+            "trustability": 64.5
         },
         {
             "from": "mhvk",
             "to": "njsmith",
-            "count": 2
+            "count": 2,
+            "cyber_awareness": 57,
+            "trustability": 61.5
         },
         {
             "from": "njsmith",
             "to": "pv",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 56,
+            "trustability": 60.5
         },
         {
             "from": "njsmith",
             "to": "charris",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 54,
+            "trustability": 61.5
         },
         {
             "from": "njsmith",
             "to": "mhvk",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 53,
+            "trustability": 60.5
         }
     ],
     "2015-05": [
         {
             "from": "elendiastarman",
             "to": "seberg",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 58,
+            "trustability": 63.0
         },
         {
             "from": "mhvk",
             "to": "pv",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 54,
+            "trustability": 62.0
         },
         {
             "from": "mhvk",
             "to": "charris",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 50,
+            "trustability": 61.0
         },
         {
             "from": "mhvk",
             "to": "njsmith",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 54,
+            "trustability": 65.0
         },
         {
             "from": "njsmith",
             "to": "pv",
-            "count": 4
+            "count": 4,
+            "cyber_awareness": 56,
+            "trustability": 65.0
         },
         {
             "from": "njsmith",
             "to": "charris",
-            "count": 4
+            "count": 4,
+            "cyber_awareness": 50,
+            "trustability": 63.0
         },
         {
             "from": "njsmith",
             "to": "mhvk",
-            "count": 4
+            "count": 4,
+            "cyber_awareness": 54,
+            "trustability": 65.0
         },
         {
             "from": "charris",
             "to": "pv",
-            "count": 5
+            "count": 5,
+            "cyber_awareness": 54,
+            "trustability": 62.0
         },
         {
             "from": "charris",
             "to": "mhvk",
-            "count": 5
+            "count": 5,
+            "cyber_awareness": 57,
+            "trustability": 63.0
         },
         {
             "from": "charris",
             "to": "njsmith",
-            "count": 5
+            "count": 5,
+            "cyber_awareness": 57,
+            "trustability": 63.0
         },
         {
             "from": "pv",
             "to": "charris",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 53,
+            "trustability": 62.0
         },
         {
             "from": "pv",
             "to": "mhvk",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 51,
+            "trustability": 66.0
         },
         {
             "from": "pv",
             "to": "njsmith",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 56,
+            "trustability": 61.0
         }
     ],
     "2016-02": [
         {
             "from": "elendiastarman",
             "to": "seberg",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 61,
+            "trustability": 64.5
         },
         {
             "from": "mhvk",
             "to": "pv",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 53,
+            "trustability": 66.5
         },
         {
             "from": "mhvk",
             "to": "charris",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 58,
+            "trustability": 65.5
         },
         {
             "from": "mhvk",
             "to": "njsmith",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 56,
+            "trustability": 62.5
         },
         {
             "from": "njsmith",
             "to": "pv",
-            "count": 4
+            "count": 4,
+            "cyber_awareness": 51,
+            "trustability": 62.5
         },
         {
             "from": "njsmith",
             "to": "charris",
-            "count": 4
+            "count": 4,
+            "cyber_awareness": 59,
+            "trustability": 61.5
         },
         {
             "from": "njsmith",
             "to": "mhvk",
-            "count": 4
+            "count": 4,
+            "cyber_awareness": 54,
+            "trustability": 65.5
         },
         {
             "from": "charris",
             "to": "pv",
-            "count": 5
+            "count": 5,
+            "cyber_awareness": 52,
+            "trustability": 66.5
         },
         {
             "from": "charris",
             "to": "mhvk",
-            "count": 5
+            "count": 5,
+            "cyber_awareness": 58,
+            "trustability": 66.5
         },
         {
             "from": "charris",
             "to": "njsmith",
-            "count": 5
+            "count": 5,
+            "cyber_awareness": 61,
+            "trustability": 64.5
         },
         {
             "from": "pv",
             "to": "charris",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 52,
+            "trustability": 65.5
         },
         {
             "from": "pv",
             "to": "mhvk",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 60,
+            "trustability": 64.5
         },
         {
             "from": "pv",
             "to": "njsmith",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 60,
+            "trustability": 66.5
         },
         {
             "from": "seberg",
             "to": "elendiastarman",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 59,
+            "trustability": 67.5
         }
     ],
     "2017-02": [
         {
             "from": "elendiastarman",
             "to": "seberg",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 56,
+            "trustability": 63.0
         },
         {
             "from": "mhvk",
             "to": "pv",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 57,
+            "trustability": 63.0
         },
         {
             "from": "mhvk",
             "to": "charris",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 55,
+            "trustability": 68.0
         },
         {
             "from": "mhvk",
             "to": "njsmith",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 62,
+            "trustability": 66.0
         },
         {
             "from": "njsmith",
             "to": "pv",
-            "count": 4
+            "count": 4,
+            "cyber_awareness": 54,
+            "trustability": 63.0
         },
         {
             "from": "njsmith",
             "to": "charris",
-            "count": 4
+            "count": 4,
+            "cyber_awareness": 56,
+            "trustability": 63.0
         },
         {
             "from": "njsmith",
             "to": "mhvk",
-            "count": 4
+            "count": 4,
+            "cyber_awareness": 59,
+            "trustability": 64.0
         },
         {
             "from": "charris",
             "to": "pv",
-            "count": 5
+            "count": 5,
+            "cyber_awareness": 59,
+            "trustability": 63.0
         },
         {
             "from": "charris",
             "to": "mhvk",
-            "count": 5
+            "count": 5,
+            "cyber_awareness": 53,
+            "trustability": 68.0
         },
         {
             "from": "charris",
             "to": "njsmith",
-            "count": 5
+            "count": 5,
+            "cyber_awareness": 57,
+            "trustability": 63.0
         },
         {
             "from": "pv",
             "to": "charris",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 61,
+            "trustability": 67.0
         },
         {
             "from": "pv",
             "to": "mhvk",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 58,
+            "trustability": 69.0
         },
         {
             "from": "pv",
             "to": "njsmith",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 61,
+            "trustability": 67.0
         },
         {
             "from": "seberg",
             "to": "elendiastarman",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 63,
+            "trustability": 69.0
         },
         {
             "from": "manuels",
             "to": "pv",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 55,
+            "trustability": 66.0
         },
         {
             "from": "manuels",
             "to": "WarrenWeckesser",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 62,
+            "trustability": 68.0
         },
         {
             "from": "pv",
             "to": "WarrenWeckesser",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 59,
+            "trustability": 65.0
         },
         {
             "from": "pv",
             "to": "manuels",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 59,
+            "trustability": 67.0
         }
     ],
     "2018-07": [
         {
             "from": "elendiastarman",
             "to": "seberg",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 56,
+            "trustability": 66.5
         },
         {
             "from": "mhvk",
             "to": "pv",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 60,
+            "trustability": 69.5
         },
         {
             "from": "mhvk",
             "to": "charris",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 60,
+            "trustability": 67.5
         },
         {
             "from": "mhvk",
             "to": "njsmith",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 61,
+            "trustability": 66.5
         },
         {
             "from": "njsmith",
             "to": "pv",
-            "count": 4
+            "count": 4,
+            "cyber_awareness": 60,
+            "trustability": 65.5
         },
         {
             "from": "njsmith",
             "to": "charris",
-            "count": 4
+            "count": 4,
+            "cyber_awareness": 63,
+            "trustability": 64.5
         },
         {
             "from": "njsmith",
             "to": "mhvk",
-            "count": 4
+            "count": 4,
+            "cyber_awareness": 56,
+            "trustability": 67.5
         },
         {
             "from": "charris",
             "to": "pv",
-            "count": 5
+            "count": 5,
+            "cyber_awareness": 55,
+            "trustability": 65.5
         },
         {
             "from": "charris",
             "to": "mhvk",
-            "count": 5
+            "count": 5,
+            "cyber_awareness": 62,
+            "trustability": 67.5
         },
         {
             "from": "charris",
             "to": "njsmith",
-            "count": 5
+            "count": 5,
+            "cyber_awareness": 56,
+            "trustability": 69.5
         },
         {
             "from": "pv",
             "to": "charris",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 63,
+            "trustability": 69.5
         },
         {
             "from": "pv",
             "to": "mhvk",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 57,
+            "trustability": 64.5
         },
         {
             "from": "pv",
             "to": "njsmith",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 56,
+            "trustability": 64.5
         },
         {
             "from": "seberg",
             "to": "elendiastarman",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 58,
+            "trustability": 65.5
         },
         {
             "from": "manuels",
             "to": "pv",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 59,
+            "trustability": 69.5
         },
         {
             "from": "manuels",
             "to": "WarrenWeckesser",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 57,
+            "trustability": 70.5
         },
         {
             "from": "pv",
             "to": "WarrenWeckesser",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 60,
+            "trustability": 69.5
         },
         {
             "from": "pv",
             "to": "manuels",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 57,
+            "trustability": 69.5
         },
         {
             "from": "will133",
             "to": "charris",
-            "count": 2
+            "count": 2,
+            "cyber_awareness": 58,
+            "trustability": 64.5
         },
         {
             "from": "charris",
             "to": "will133",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 56,
+            "trustability": 67.5
         }
     ],
     "2018-09": [
         {
             "from": "elendiastarman",
             "to": "seberg",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 62,
+            "trustability": 72.0
         },
         {
             "from": "mhvk",
             "to": "pv",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 62,
+            "trustability": 69.0
         },
         {
             "from": "mhvk",
             "to": "charris",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 65,
+            "trustability": 72.0
         },
         {
             "from": "mhvk",
             "to": "njsmith",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 62,
+            "trustability": 71.0
         },
         {
             "from": "njsmith",
             "to": "pv",
-            "count": 4
+            "count": 4,
+            "cyber_awareness": 64,
+            "trustability": 71.0
         },
         {
             "from": "njsmith",
             "to": "charris",
-            "count": 4
+            "count": 4,
+            "cyber_awareness": 62,
+            "trustability": 66.0
         },
         {
             "from": "njsmith",
             "to": "mhvk",
-            "count": 4
+            "count": 4,
+            "cyber_awareness": 62,
+            "trustability": 67.0
         },
         {
             "from": "charris",
             "to": "pv",
-            "count": 5
+            "count": 5,
+            "cyber_awareness": 58,
+            "trustability": 68.0
         },
         {
             "from": "charris",
             "to": "mhvk",
-            "count": 5
+            "count": 5,
+            "cyber_awareness": 64,
+            "trustability": 67.0
         },
         {
             "from": "charris",
             "to": "njsmith",
-            "count": 5
+            "count": 5,
+            "cyber_awareness": 58,
+            "trustability": 67.0
         },
         {
             "from": "pv",
             "to": "charris",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 61,
+            "trustability": 66.0
         },
         {
             "from": "pv",
             "to": "mhvk",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 58,
+            "trustability": 72.0
         },
         {
             "from": "pv",
             "to": "njsmith",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 62,
+            "trustability": 66.0
         },
         {
             "from": "seberg",
             "to": "elendiastarman",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 65,
+            "trustability": 70.0
         },
         {
             "from": "manuels",
             "to": "pv",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 60,
+            "trustability": 69.0
         },
         {
             "from": "manuels",
             "to": "WarrenWeckesser",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 60,
+            "trustability": 69.0
         },
         {
             "from": "pv",
             "to": "WarrenWeckesser",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 60,
+            "trustability": 67.0
         },
         {
             "from": "pv",
             "to": "manuels",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 66,
+            "trustability": 69.0
         },
         {
             "from": "will133",
             "to": "charris",
-            "count": 2
+            "count": 2,
+            "cyber_awareness": 63,
+            "trustability": 69.0
         },
         {
             "from": "charris",
             "to": "will133",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 63,
+            "trustability": 71.0
         },
         {
             "from": "hmaarrfk",
             "to": "charris",
-            "count": 2
+            "count": 2,
+            "cyber_awareness": 58,
+            "trustability": 71.0
         },
         {
             "from": "hmaarrfk",
             "to": "eric-wieser",
-            "count": 2
+            "count": 2,
+            "cyber_awareness": 66,
+            "trustability": 72.0
         },
         {
             "from": "eric-wieser",
             "to": "charris",
-            "count": 2
+            "count": 2,
+            "cyber_awareness": 59,
+            "trustability": 67.0
         },
         {
             "from": "eric-wieser",
             "to": "hmaarrfk",
-            "count": 2
+            "count": 2,
+            "cyber_awareness": 67,
+            "trustability": 67.0
         },
         {
             "from": "charris",
             "to": "hmaarrfk",
-            "count": 2
+            "count": 2,
+            "cyber_awareness": 63,
+            "trustability": 72.0
         },
         {
             "from": "charris",
             "to": "eric-wieser",
-            "count": 2
+            "count": 2,
+            "cyber_awareness": 66,
+            "trustability": 69.0
         }
     ],
     "2019-05": [
         {
             "from": "elendiastarman",
             "to": "seberg",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 62,
+            "trustability": 67.5
         },
         {
             "from": "mhvk",
             "to": "pv",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 59,
+            "trustability": 73.5
         },
         {
             "from": "mhvk",
             "to": "charris",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 60,
+            "trustability": 69.5
         },
         {
             "from": "mhvk",
             "to": "njsmith",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 62,
+            "trustability": 73.5
         },
         {
             "from": "njsmith",
             "to": "pv",
-            "count": 4
+            "count": 4,
+            "cyber_awareness": 67,
+            "trustability": 69.5
         },
         {
             "from": "njsmith",
             "to": "charris",
-            "count": 4
+            "count": 4,
+            "cyber_awareness": 64,
+            "trustability": 73.5
         },
         {
             "from": "njsmith",
             "to": "mhvk",
-            "count": 4
+            "count": 4,
+            "cyber_awareness": 66,
+            "trustability": 67.5
         },
         {
             "from": "charris",
             "to": "pv",
-            "count": 5
+            "count": 5,
+            "cyber_awareness": 69,
+            "trustability": 69.5
         },
         {
             "from": "charris",
             "to": "mhvk",
-            "count": 5
+            "count": 5,
+            "cyber_awareness": 60,
+            "trustability": 68.5
         },
         {
             "from": "charris",
             "to": "njsmith",
-            "count": 5
+            "count": 5,
+            "cyber_awareness": 69,
+            "trustability": 73.5
         },
         {
             "from": "pv",
             "to": "charris",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 59,
+            "trustability": 71.5
         },
         {
             "from": "pv",
             "to": "mhvk",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 59,
+            "trustability": 73.5
         },
         {
             "from": "pv",
             "to": "njsmith",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 67,
+            "trustability": 72.5
         },
         {
             "from": "seberg",
             "to": "elendiastarman",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 63,
+            "trustability": 67.5
         },
         {
             "from": "manuels",
             "to": "pv",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 69,
+            "trustability": 67.5
         },
         {
             "from": "manuels",
             "to": "WarrenWeckesser",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 64,
+            "trustability": 69.5
         },
         {
             "from": "pv",
             "to": "WarrenWeckesser",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 65,
+            "trustability": 68.5
         },
         {
             "from": "pv",
             "to": "manuels",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 65,
+            "trustability": 67.5
         },
         {
             "from": "will133",
             "to": "charris",
-            "count": 2
+            "count": 2,
+            "cyber_awareness": 69,
+            "trustability": 73.5
         },
         {
             "from": "charris",
             "to": "will133",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 64,
+            "trustability": 67.5
         },
         {
             "from": "hmaarrfk",
             "to": "charris",
-            "count": 2
+            "count": 2,
+            "cyber_awareness": 62,
+            "trustability": 73.5
         },
         {
             "from": "hmaarrfk",
             "to": "eric-wieser",
-            "count": 2
+            "count": 2,
+            "cyber_awareness": 65,
+            "trustability": 67.5
         },
         {
             "from": "eric-wieser",
             "to": "charris",
-            "count": 2
+            "count": 2,
+            "cyber_awareness": 63,
+            "trustability": 68.5
         },
         {
             "from": "eric-wieser",
             "to": "hmaarrfk",
-            "count": 2
+            "count": 2,
+            "cyber_awareness": 59,
+            "trustability": 71.5
         },
         {
             "from": "charris",
             "to": "hmaarrfk",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 65,
+            "trustability": 70.5
         },
         {
             "from": "charris",
             "to": "eric-wieser",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 66,
+            "trustability": 72.5
         }
     ],
     "2021-09": [
         {
             "from": "elendiastarman",
             "to": "seberg",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 63,
+            "trustability": 69.0
         },
         {
             "from": "mhvk",
             "to": "pv",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 69,
+            "trustability": 75.0
         },
         {
             "from": "mhvk",
             "to": "charris",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 65,
+            "trustability": 70.0
         },
         {
             "from": "mhvk",
             "to": "njsmith",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 71,
+            "trustability": 69.0
         },
         {
             "from": "njsmith",
             "to": "pv",
-            "count": 4
+            "count": 4,
+            "cyber_awareness": 69,
+            "trustability": 73.0
         },
         {
             "from": "njsmith",
             "to": "charris",
-            "count": 4
+            "count": 4,
+            "cyber_awareness": 65,
+            "trustability": 72.0
         },
         {
             "from": "njsmith",
             "to": "mhvk",
-            "count": 4
+            "count": 4,
+            "cyber_awareness": 66,
+            "trustability": 75.0
         },
         {
             "from": "charris",
             "to": "pv",
-            "count": 5
+            "count": 5,
+            "cyber_awareness": 71,
+            "trustability": 72.0
         },
         {
             "from": "charris",
             "to": "mhvk",
-            "count": 5
+            "count": 5,
+            "cyber_awareness": 62,
+            "trustability": 73.0
         },
         {
             "from": "charris",
             "to": "njsmith",
-            "count": 5
+            "count": 5,
+            "cyber_awareness": 71,
+            "trustability": 71.0
         },
         {
             "from": "pv",
             "to": "charris",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 63,
+            "trustability": 75.0
         },
         {
             "from": "pv",
             "to": "mhvk",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 65,
+            "trustability": 74.0
         },
         {
             "from": "pv",
             "to": "njsmith",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 63,
+            "trustability": 71.0
         },
         {
             "from": "seberg",
             "to": "elendiastarman",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 65,
+            "trustability": 73.0
         },
         {
             "from": "manuels",
             "to": "pv",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 69,
+            "trustability": 69.0
         },
         {
             "from": "manuels",
             "to": "WarrenWeckesser",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 68,
+            "trustability": 69.0
         },
         {
             "from": "pv",
             "to": "WarrenWeckesser",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 71,
+            "trustability": 71.0
         },
         {
             "from": "pv",
             "to": "manuels",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 66,
+            "trustability": 69.0
         },
         {
             "from": "will133",
             "to": "charris",
-            "count": 2
+            "count": 2,
+            "cyber_awareness": 64,
+            "trustability": 73.0
         },
         {
             "from": "charris",
             "to": "will133",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 63,
+            "trustability": 71.0
         },
         {
             "from": "hmaarrfk",
             "to": "charris",
-            "count": 2
+            "count": 2,
+            "cyber_awareness": 61,
+            "trustability": 69.0
         },
         {
             "from": "hmaarrfk",
             "to": "eric-wieser",
-            "count": 2
+            "count": 2,
+            "cyber_awareness": 67,
+            "trustability": 69.0
         },
         {
             "from": "eric-wieser",
             "to": "charris",
-            "count": 2
+            "count": 2,
+            "cyber_awareness": 64,
+            "trustability": 75.0
         },
         {
             "from": "eric-wieser",
             "to": "hmaarrfk",
-            "count": 2
+            "count": 2,
+            "cyber_awareness": 70,
+            "trustability": 75.0
         },
         {
             "from": "charris",
             "to": "hmaarrfk",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 65,
+            "trustability": 74.0
         },
         {
             "from": "charris",
             "to": "eric-wieser",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 63,
+            "trustability": 70.0
         },
         {
             "from": "Sharkoo123",
             "to": "charris",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 64,
+            "trustability": 73.0
         },
         {
             "from": "Sharkoo123",
             "to": "seberg",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 63,
+            "trustability": 71.0
         },
         {
             "from": "seberg",
             "to": "Sharkoo123",
-            "count": 2
+            "count": 2,
+            "cyber_awareness": 64,
+            "trustability": 70.0
         },
         {
             "from": "seberg",
             "to": "charris",
-            "count": 2
+            "count": 2,
+            "cyber_awareness": 64,
+            "trustability": 75.0
         },
         {
             "from": "charris",
             "to": "Sharkoo123",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 64,
+            "trustability": 69.0
         },
         {
             "from": "charris",
             "to": "seberg",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 62,
+            "trustability": 70.0
         }
     ],
     "2021-10": [
         {
             "from": "elendiastarman",
             "to": "seberg",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 68,
+            "trustability": 74.5
         },
         {
             "from": "mhvk",
             "to": "pv",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 72,
+            "trustability": 71.5
         },
         {
             "from": "mhvk",
             "to": "charris",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 68,
+            "trustability": 74.5
         },
         {
             "from": "mhvk",
             "to": "njsmith",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 68,
+            "trustability": 73.5
         },
         {
             "from": "njsmith",
             "to": "pv",
-            "count": 4
+            "count": 4,
+            "cyber_awareness": 63,
+            "trustability": 71.5
         },
         {
             "from": "njsmith",
             "to": "charris",
-            "count": 4
+            "count": 4,
+            "cyber_awareness": 64,
+            "trustability": 70.5
         },
         {
             "from": "njsmith",
             "to": "mhvk",
-            "count": 4
+            "count": 4,
+            "cyber_awareness": 73,
+            "trustability": 76.5
         },
         {
             "from": "charris",
             "to": "pv",
-            "count": 5
+            "count": 5,
+            "cyber_awareness": 63,
+            "trustability": 75.5
         },
         {
             "from": "charris",
             "to": "mhvk",
-            "count": 5
+            "count": 5,
+            "cyber_awareness": 70,
+            "trustability": 74.5
         },
         {
             "from": "charris",
             "to": "njsmith",
-            "count": 5
+            "count": 5,
+            "cyber_awareness": 64,
+            "trustability": 74.5
         },
         {
             "from": "pv",
             "to": "charris",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 66,
+            "trustability": 70.5
         },
         {
             "from": "pv",
             "to": "mhvk",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 68,
+            "trustability": 74.5
         },
         {
             "from": "pv",
             "to": "njsmith",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 68,
+            "trustability": 72.5
         },
         {
             "from": "seberg",
             "to": "elendiastarman",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 63,
+            "trustability": 73.5
         },
         {
             "from": "manuels",
             "to": "pv",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 67,
+            "trustability": 70.5
         },
         {
             "from": "manuels",
             "to": "WarrenWeckesser",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 66,
+            "trustability": 71.5
         },
         {
             "from": "pv",
             "to": "WarrenWeckesser",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 69,
+            "trustability": 72.5
         },
         {
             "from": "pv",
             "to": "manuels",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 71,
+            "trustability": 76.5
         },
         {
             "from": "will133",
             "to": "charris",
-            "count": 2
+            "count": 2,
+            "cyber_awareness": 71,
+            "trustability": 70.5
         },
         {
             "from": "charris",
             "to": "will133",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 73,
+            "trustability": 74.5
         },
         {
             "from": "hmaarrfk",
             "to": "charris",
-            "count": 2
+            "count": 2,
+            "cyber_awareness": 72,
+            "trustability": 76.5
         },
         {
             "from": "hmaarrfk",
             "to": "eric-wieser",
-            "count": 2
+            "count": 2,
+            "cyber_awareness": 67,
+            "trustability": 73.5
         },
         {
             "from": "eric-wieser",
             "to": "charris",
-            "count": 2
+            "count": 2,
+            "cyber_awareness": 69,
+            "trustability": 76.5
         },
         {
             "from": "eric-wieser",
             "to": "hmaarrfk",
-            "count": 2
+            "count": 2,
+            "cyber_awareness": 72,
+            "trustability": 70.5
         },
         {
             "from": "charris",
             "to": "hmaarrfk",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 72,
+            "trustability": 72.5
         },
         {
             "from": "charris",
             "to": "eric-wieser",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 71,
+            "trustability": 75.5
         },
         {
             "from": "Sharkoo123",
             "to": "charris",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 63,
+            "trustability": 74.5
         },
         {
             "from": "Sharkoo123",
             "to": "seberg",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 63,
+            "trustability": 73.5
         },
         {
             "from": "seberg",
             "to": "Sharkoo123",
-            "count": 2
+            "count": 2,
+            "cyber_awareness": 72,
+            "trustability": 72.5
         },
         {
             "from": "seberg",
             "to": "charris",
-            "count": 2
+            "count": 2,
+            "cyber_awareness": 64,
+            "trustability": 72.5
         },
         {
             "from": "charris",
             "to": "Sharkoo123",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 64,
+            "trustability": 75.5
         },
         {
             "from": "charris",
             "to": "seberg",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 70,
+            "trustability": 70.5
         },
         {
             "from": "WarrenWeckesser",
             "to": "pv",
-            "count": 2
+            "count": 2,
+            "cyber_awareness": 69,
+            "trustability": 74.5
         },
         {
             "from": "WarrenWeckesser",
             "to": "manuels",
-            "count": 2
+            "count": 2,
+            "cyber_awareness": 67,
+            "trustability": 71.5
         }
     ],
     "2021-12": [
         {
             "from": "elendiastarman",
             "to": "seberg",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 75,
+            "trustability": 74.0
         },
         {
             "from": "mhvk",
             "to": "pv",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 71,
+            "trustability": 75.0
         },
         {
             "from": "mhvk",
             "to": "charris",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 71,
+            "trustability": 73.0
         },
         {
             "from": "mhvk",
             "to": "njsmith",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 75,
+            "trustability": 72.0
         },
         {
             "from": "njsmith",
             "to": "pv",
-            "count": 4
+            "count": 4,
+            "cyber_awareness": 65,
+            "trustability": 73.0
         },
         {
             "from": "njsmith",
             "to": "charris",
-            "count": 4
+            "count": 4,
+            "cyber_awareness": 69,
+            "trustability": 74.0
         },
         {
             "from": "njsmith",
             "to": "mhvk",
-            "count": 4
+            "count": 4,
+            "cyber_awareness": 75,
+            "trustability": 75.0
         },
         {
             "from": "charris",
             "to": "pv",
-            "count": 5
+            "count": 5,
+            "cyber_awareness": 69,
+            "trustability": 76.0
         },
         {
             "from": "charris",
             "to": "mhvk",
-            "count": 5
+            "count": 5,
+            "cyber_awareness": 67,
+            "trustability": 74.0
         },
         {
             "from": "charris",
             "to": "njsmith",
-            "count": 5
+            "count": 5,
+            "cyber_awareness": 68,
+            "trustability": 73.0
         },
         {
             "from": "pv",
             "to": "charris",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 67,
+            "trustability": 73.0
         },
         {
             "from": "pv",
             "to": "mhvk",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 69,
+            "trustability": 74.0
         },
         {
             "from": "pv",
             "to": "njsmith",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 69,
+            "trustability": 75.0
         },
         {
             "from": "seberg",
             "to": "elendiastarman",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 70,
+            "trustability": 77.0
         },
         {
             "from": "manuels",
             "to": "pv",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 72,
+            "trustability": 76.0
         },
         {
             "from": "manuels",
             "to": "WarrenWeckesser",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 67,
+            "trustability": 74.0
         },
         {
             "from": "pv",
             "to": "WarrenWeckesser",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 67,
+            "trustability": 74.0
         },
         {
             "from": "pv",
             "to": "manuels",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 74,
+            "trustability": 78.0
         },
         {
             "from": "will133",
             "to": "charris",
-            "count": 2
+            "count": 2,
+            "cyber_awareness": 73,
+            "trustability": 75.0
         },
         {
             "from": "charris",
             "to": "will133",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 74,
+            "trustability": 78.0
         },
         {
             "from": "hmaarrfk",
             "to": "charris",
-            "count": 2
+            "count": 2,
+            "cyber_awareness": 68,
+            "trustability": 76.0
         },
         {
             "from": "hmaarrfk",
             "to": "eric-wieser",
-            "count": 2
+            "count": 2,
+            "cyber_awareness": 68,
+            "trustability": 73.0
         },
         {
             "from": "eric-wieser",
             "to": "charris",
-            "count": 2
+            "count": 2,
+            "cyber_awareness": 70,
+            "trustability": 73.0
         },
         {
             "from": "eric-wieser",
             "to": "hmaarrfk",
-            "count": 2
+            "count": 2,
+            "cyber_awareness": 74,
+            "trustability": 72.0
         },
         {
             "from": "charris",
             "to": "hmaarrfk",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 69,
+            "trustability": 74.0
         },
         {
             "from": "charris",
             "to": "eric-wieser",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 65,
+            "trustability": 77.0
         },
         {
             "from": "Sharkoo123",
             "to": "charris",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 73,
+            "trustability": 77.0
         },
         {
             "from": "Sharkoo123",
             "to": "seberg",
-            "count": 3
+            "count": 3,
+            "cyber_awareness": 70,
+            "trustability": 74.0
         },
         {
             "from": "seberg",
             "to": "Sharkoo123",
-            "count": 4
+            "count": 4,
+            "cyber_awareness": 74,
+            "trustability": 74.0
         },
         {
             "from": "seberg",
             "to": "charris",
-            "count": 4
+            "count": 4,
+            "cyber_awareness": 74,
+            "trustability": 77.0
         },
         {
             "from": "charris",
             "to": "Sharkoo123",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 65,
+            "trustability": 78.0
         },
         {
             "from": "charris",
             "to": "seberg",
-            "count": 1
+            "count": 1,
+            "cyber_awareness": 69,
+            "trustability": 78.0
         },
         {
             "from": "WarrenWeckesser",
             "to": "pv",
-            "count": 2
+            "count": 2,
+            "cyber_awareness": 67,
+            "trustability": 74.0
         },
         {
             "from": "WarrenWeckesser",
             "to": "manuels",
-            "count": 2
+            "count": 2,
+            "cyber_awareness": 65,
+            "trustability": 73.0
         }
     ]
 }
