@@ -17,11 +17,17 @@
                     <div class="row align-items-center mb-4">
                         <div class="col-md-6">
                             <h6 class="text-muted mb-0">Data for period: <span id="currentPeriod" class="fw-medium"></span></h6>
-                        </div>
-                        <div class="col-md-6 text-md-end mt-3 mt-md-0">
+                        </div>                        <div class="col-md-6 text-md-end mt-3 mt-md-0">
                             <div class="legend small">
                                 <span class="me-3"><i class="bi bi-circle-fill text-primary"></i> Team Member</span>
-                                <span><i class="bi bi-arrow-right"></i> Collaboration Strength</span>
+                                <span class="me-3">
+                                    <svg width="40" height="12" class="d-inline-block align-middle me-1">
+                                        <line x1="0" y1="6" x2="10" y2="6" stroke="#2a9d8f" stroke-width="1.5" />
+                                        <line x1="15" y1="6" x2="25" y2="6" stroke="#2a9d8f" stroke-width="3" />
+                                        <line x1="30" y1="6" x2="40" y2="6" stroke="#2a9d8f" stroke-width="6" />
+                                    </svg>
+                                    Line Weight (Log Scale)
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -53,7 +59,6 @@
                                     <th>From</th>
                                     <th>To</th>
                                     <th>Interaction Count</th>
-                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody id="collaborationTableBody">

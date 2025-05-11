@@ -1,9 +1,10 @@
 /* Network Visualization Styles */
 
-/* Arrowhead styles */
+/* Arrowhead styles - enhanced for better visibility */
 .arrowhead {
-    fill: #d9d9d9;
+    fill: #2a9d8f;
     stroke: none;
+    filter: drop-shadow(0 0 1px rgba(0,0,0,0.3));
 }
 
 /* Legend styles */
@@ -28,9 +29,34 @@
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 }
 
+.node circle {
+    transition: all 0.2s ease-in-out;
+}
+
 .link {
-    stroke: #999;
-    stroke-opacity: 0.6;
+    stroke: #2a9d8f;  /* Default color, will be overridden by JavaScript */
+    stroke-opacity: 0.8;
+    transition: stroke-width 0.3s ease, stroke-opacity 0.3s ease;  /* Smooth transitions for hover effects */
+    filter: drop-shadow(0 0 1px rgba(0,0,0,0.2)); /* Subtle shadow for depth */
+    stroke-linecap: round; /* Rounded line ends for cleaner look */
+}
+
+/* Node tooltip styling */
+.node-tooltip {
+    position: absolute;
+    padding: 8px 12px;
+    font-size: 12px;
+    background-color: rgba(45, 55, 72, 0.9);
+    color: white;
+    border-radius: 6px;
+    pointer-events: none;
+    z-index: 100;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: opacity 0.2s;
 }
 
 /* Network graph container */
