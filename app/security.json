@@ -1,0 +1,23 @@
+[
+    {
+        "type": "Off-hours Access",
+        "user": "John Smith",
+        "timestamp": "2023-10-15 22:30",
+        "severity": "medium",
+        "details": "System access detected at 11:45 PM"
+    },
+    {
+        "type": "Multiple Login Attempts",
+        "user": "Emma Wilson",
+        "timestamp": "2023-10-14 18:45",
+        "severity": "high",
+        "details": "5 failed login attempts detected"
+    },
+    {
+        "type": "Unusual File Access",
+        "user": "Michael Chen",
+        "timestamp": "2023-10-15 10:30",
+        "severity": "low",
+        "details": "Accessed restricted project files"
+    }
+]

@@ -2,9 +2,9 @@ import json
 from huggingface_hub import login
 
 # Import functions from new modules
-from config import TARGET_REPO, HUGGING_FACE_TOKEN
-from data_processing import load_and_sample_data, filter_and_process_repo_data
-from collaboration_analysis import analyze_monthly_collaboration
+from .config import TARGET_REPO, HUGGING_FACE_TOKEN
+from .data_processing import load_and_sample_data, filter_and_process_repo_data
+from .collaboration_analysis import analyze_monthly_collaboration
 
 # --- Main Execution ---
 def main():

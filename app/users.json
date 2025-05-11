@@ -1,9 +1,146 @@
 [
-  {
-    "name": "Emily Carter",
-    "email": "emily.carter@mediacorp.com",
-    "company": "MediaCorp",
-    "location": "New York",
-    "bio": "HR coordinator working with employee onboarding and benefits administration"
-  }
+    {
+        "name": "Elendia Starman",
+        "email": "elendiastarman@example.com",
+        "company": "SciTech Solutions",
+        "location": "Remote",
+        "bio": "Data science enthusiast exploring astrophysics simulations",
+        "role": "Data Scientist",
+        "score": 95,
+        "tasks_completed": 120,
+        "tasks_in_progress": 5,
+        "security_score": 0.435
+    },
+    {
+        "name": "Seberg",
+        "email": "seberg@example.com",
+        "company": "QuantumSoft",
+        "location": "Berlin",
+        "bio": "Senior software developer working on open-source numerical libraries",
+        "role": "Senior Developer",
+        "score": 88,
+        "tasks_completed": 200,
+        "tasks_in_progress": 10,
+        "security_score": 0.38
+    },
+    {
+        "name": "MHVK",
+        "email": "mhvk@example.com",
+        "company": "OpenCompute",
+        "location": "London",
+        "bio": "Numerical methods researcher with a focus on high-performance computing",
+        "role": "Researcher",
+        "score": 92,
+        "tasks_completed": 150,
+        "tasks_in_progress": 8,
+        "security_score": 0.92
+    },
+    {
+        "name": "PV",
+        "email": "pv@example.com",
+        "company": "NumStack",
+        "location": "Amsterdam",
+        "bio": "Core contributor to scientific computing projects",
+        "role": "Contributor",
+        "score": 85,
+        "tasks_completed": 180,
+        "tasks_in_progress": 6,
+        "security_score": 0.81
+    },
+    {
+        "name": "Charris",
+        "email": "charris@example.com",
+        "company": "DataForge",
+        "location": "San Francisco",
+        "bio": "Lead engineer maintaining core data processing frameworks",
+        "role": "Lead Engineer",
+        "score": 90,
+        "tasks_completed": 250,
+        "tasks_in_progress": 4,
+        "security_score": 0.89
+    },
+    {
+        "name": "N. J. Smith",
+        "email": "njsmith@example.com",
+        "company": "PySystems",
+        "location": "Seattle",
+        "bio": "Concurrency and async programming expert",
+        "role": "Programming Expert",
+        "score": 89,
+        "tasks_completed": 170,
+        "tasks_in_progress": 7,
+        "security_score": 0.78
+    },
+    {
+        "name": "Manuels",
+        "email": "manuels@example.com",
+        "company": "AIStream",
+        "location": "Zurich",
+        "bio": "Cloud infrastructure specialist working with large-scale machine learning",
+        "role": "Cloud Specialist",
+        "score": 87,
+        "tasks_completed": 140,
+        "tasks_in_progress": 9,
+        "security_score": 0.84
+    },
+    {
+        "name": "Warren Weckesser",
+        "email": "warren.weckesser@example.com",
+        "company": "OptiData Inc.",
+        "location": "Chicago",
+        "bio": "Applied mathematician with a background in optimization libraries",
+        "role": "Mathematician",
+        "score": 93,
+        "tasks_completed": 190,
+        "tasks_in_progress": 5,
+        "security_score": 0.91
+    },
+    {
+        "name": "Will133",
+        "email": "will133@example.com",
+        "company": "SysArch Labs",
+        "location": "Toronto",
+        "bio": "Systems architect with experience in backend infrastructure",
+        "role": "Systems Architect",
+        "score": 91,
+        "tasks_completed": 210,
+        "tasks_in_progress": 3,
+        "security_score": 0.88
+    },
+    {
+        "name": "Hmaarrfk",
+        "email": "hmaarrfk@example.com",
+        "company": "VisionWare",
+        "location": "Montreal",
+        "bio": "UX developer focusing on accessibility and frontend design",
+        "role": "UX Developer",
+        "score": 86,
+        "tasks_completed": 160,
+        "tasks_in_progress": 6,
+        "security_score": 0.79
+    },
+    {
+        "name": "Eric Wieser",
+        "email": "eric-wieser@example.com",
+        "company": "ArrayTech",
+        "location": "Boston",
+        "bio": "Numerical computing engineer and maintainer of array libraries",
+        "role": "Engineer",
+        "score": 94,
+        "tasks_completed": 230,
+        "tasks_in_progress": 4,
+        "security_score": 0.93
+    },
+    {
+        "name": "Sharkoo123",
+        "email": "sharkoo123@example.com",
+        "company": "GameLogic Studios",
+        "location": "Austin",
+        "bio": "Graphics programmer and simulation engine developer",
+        "role": "Graphics Programmer",
+        "score": 89,
+        "tasks_completed": 175,
+        "tasks_in_progress": 8,
+        "security_score": 0.85
+    }
 ]

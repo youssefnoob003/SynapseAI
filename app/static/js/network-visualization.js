@@ -146,28 +146,49 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Find max connections for scaling
         const maxConnections = Math.max(...nodeLinkCount.values(), 1);
-        
-        // Create node scale based on connections - minimum size 20, max size 36
+          // Create node scale based on connections - with improved aesthetics and text fit
         const nodeScale = d3.scaleLinear()
             .domain([1, maxConnections])
-            .range([20, 36])
-            .clamp(true);        // Create graph data
+            .range([24, 42]) // Increased range for better text fit
+            .clamp(true);// Create graph data
         function debugObject(obj, label) {
             console.log(`--- DEBUG ${label} ---`);
             console.log(JSON.stringify(obj, null, 2));
             console.log(`--- END ${label} ---`);
             return obj; // Pass through the object for chaining
         }
-        
-        const nodes = Array.from(nodesSet).map(name => {
+          const nodes = Array.from(nodesSet).map(name => {
             const connections = nodeLinkCount.get(name) || 0;
+            
+            // More sophisticated name processing for better fit
+            let displayName;
+            if (name.indexOf(' ') > 0) {
+                // If there's a space, use initials or first name
+                const nameParts = name.split(' ');
+                if (nameParts.length >= 2) {
+                    // Use initials for first and last name
+                    displayName = nameParts[0][0] + nameParts[nameParts.length-1][0];
+                    if (displayName.length < 2) displayName = nameParts[0]; // Fallback
+                } else {
+                    displayName = nameParts[0];
+                }
+            } else if (name.indexOf('-') > 0) {
+                // For hyphenated names, use first part
+                displayName = name.split('-')[0];
+            } else if (name.length > 10) {
+                // For long names without spaces, truncate
+                displayName = name.substring(0, 8) + '..';
+            } else {
+                displayName = name;
+            }
+            
             return { 
                 id: name, 
                 name: name,
-                // Extract first part before dash or hyphen if name is long
-                displayName: name.indexOf('-') > 0 ? name.split('-')[0] : name.length > 8 ? name.substring(0, 6) + '...' : name,
+                displayName: displayName,
+                fullName: name, // Keep original full name for tooltips
                 connections: connections,
-                radius: nodeScale(connections),
+                radius: nodeScale(connections) + (displayName.length * 0.8), // Dynamic radius based on name length
                 // Explicitly add coordinates
                 x: width / 2 + (Math.random() - 0.5) * 100,
                 y: height / 2 + (Math.random() - 0.5) * 100
@@ -188,46 +209,79 @@ document.addEventListener('DOMContentLoaded', function() {
             links: links
         };
         
-        console.log('Graph data processed:', graphData);
-
-        // Update the visualization
+        console.log('Graph data processed:', graphData);        // Update the visualization
         const maxLinkValue = d3.max(graphData.links, d => d.value);
         const minLinkValue = d3.min(graphData.links, d => d.value);
         const maxNodeConnections = d3.max(graphData.nodes, n => n.connections);
         
-        // More nuanced scales for visual elements
-        const linkWidthScale = d3.scaleLinear()
-            .domain([minLinkValue, maxLinkValue])
-            .range([0.7, 4]); // Wider range for more visual distinction
+        // Add explanatory text for the log scale to the UI
+        console.log(`Link values range from ${minLinkValue} to ${maxLinkValue} (log scaled for visibility)`)
+        
+        // Create gradient definitions for node aesthetics
+        const createGradientDefs = () => {
+            graphData.nodes.forEach(node => {
+                const colorId = node.id.replace(/[^a-zA-Z0-9]/g, '_');
+                const gradientId = `gradient-${colorId}`;
+                const nodeColor = colors(node.id);
+                
+                // Create slightly darker version of the color for gradient
+                const darkerColor = d3.color(nodeColor).darker(0.5);
+                
+                const gradient = defs.append("radialGradient")
+                    .attr("id", gradientId)
+                    .attr("cx", "30%")
+                    .attr("cy", "30%")
+                    .attr("r", "70%")
+                    .attr("fx", "30%")
+                    .attr("fy", "30%");
+                
+                gradient.append("stop")
+                    .attr("offset", "0%")
+                    .attr("stop-color", nodeColor)
+                    .attr("stop-opacity", 1);
+                
+                gradient.append("stop")
+                    .attr("offset", "100%")
+                    .attr("stop-color", darkerColor)
+                    .attr("stop-opacity", 1);
+                    
+                node.gradientId = gradientId;
+            });
+        };// More nuanced scales for visual elements - using enhanced logarithmic scale for link width
+        const linkWidthScale = d3.scaleLog()
+            .domain([Math.max(minLinkValue, 1), Math.max(maxLinkValue, 2)])  // Log scale requires positive values
+            .range([1.5, 8])  // Wider range for more dramatic scaling of line thickness
+            .clamp(true);     // Prevent values outside of domain
             
         const linkOpacityScale = d3.scaleLinear()
             .domain([minLinkValue, maxLinkValue])
-            .range([0.2, 0.8]); // More opacity contrast
+            .range([0.5, 0.9]); // Increased minimum opacity for better visibility
             
-        // Color palette variations for link strength
+        // Color palette variations for link strength - using more distinct colors
         const linkColorScale = d3.scaleLinear()
             .domain([minLinkValue, maxLinkValue])
-            .range(['#e6e6e6', '#a0a0a0']); // Light to medium gray for strength
-
-        // Clear previous elements
+            .range(['#2a9d8f', '#264653']); // Using colors from the node palette for better harmony        // Clear previous elements
         svg.selectAll('*').remove();
         
         // Re-append the defs with marker
         const defs = svg.append('defs');
-          // Create minimalist arrowhead marker
+        
+        // Create consistent arrowhead marker that doesn't scale with line weight
         defs.append('marker')
             .attr('id', 'arrowhead')
             .attr('viewBox', '0 -3 6 6')
-            .attr('refX', nodeRadius + 5)
+            .attr('refX', nodeRadius + 7) // Increased distance from node
             .attr('refY', 0)
-            .attr('markerWidth', 4)
-            .attr('markerHeight', 4)
+            .attr('markerWidth', 5) // Consistent size
+            .attr('markerHeight', 5) 
             .attr('orient', 'auto')
+            .attr('markerUnits', 'userSpaceOnUse') // This ensures consistent size regardless of stroke width
             .append('path')
             .attr('d', 'M0,-3L6,0L0,3')
             .attr('class', 'arrowhead');
-
-        // Create links with weight-based styling
+            
+        // Create gradient definitions for more aesthetic nodes
+        createGradientDefs();// Create links with weight-based styling - enhanced for clarity
         const linksSelection = svg.append('g')
             .attr('class', 'links')
             .selectAll('line')
@@ -237,7 +291,13 @@ document.addEventListener('DOMContentLoaded', function() {
             .attr('class', 'link')
             .style('stroke', d => linkColorScale(d.value)) // Use the defined color scale
             .style('stroke-opacity', d => linkOpacityScale(d.value)) // Opacity based on weight
-            .style('stroke-width', d => linkWidthScale(d.value)) // Width based on weight
+            .style('stroke-width', d => {
+                // Enhanced log-scale for line weight with clearer visual distinction
+                const width = linkWidthScale(Math.max(d.value, 1));
+                console.log(`Link value: ${d.value}, scaled width: ${width}`); // Debug log
+                return width;
+            }) // Width based on enhanced log scale
+            .style('stroke-linecap', 'round') // Round the line ends for a cleaner look
             .attr('marker-end', 'url(#arrowhead)');// Add arrowhead
 
         // Create nodes group with minimal, modern design
@@ -247,28 +307,101 @@ document.addEventListener('DOMContentLoaded', function() {
             .data(graphData.nodes)
             .enter()
             .append('g')
-            .attr('class', 'node')
-            .call(d3.drag()
+            .attr('class', 'node')            .call(d3.drag()
                 .on('start', dragstarted)
                 .on('drag', dragged)
-                .on('end', dragended));        // Add clean, minimal node design with size based on connections
+                .on('end', dragended))            .on('mouseover', function(event, d) {
+                // Highlight connected links and nodes
+                linksSelection
+                    .style('stroke-opacity', l => 
+                        l.source.id === d.id || l.target.id === d.id 
+                            ? 1.0   // Connected links are fully opaque
+                            : 0.1)  // Other links fade more to background for better contrast
+                    .style('stroke-width', l => {
+                        if (l.source.id === d.id || l.target.id === d.id) {
+                            // Connected links keep their logarithmic scale but get a boost
+                            const baseWidth = linkWidthScale(Math.max(l.value, 1));
+                            return baseWidth * 1.3;
+                        }
+                        return linkWidthScale(Math.max(l.value, 1));
+                    });
+                
+                // Highlight connected nodes
+                nodesSelection.style('opacity', n => 
+                    n.id === d.id || 
+                    graphData.links.some(l => 
+                        (l.source.id === d.id && l.target.id === n.id) || 
+                        (l.target.id === d.id && l.source.id === n.id)
+                    ) ? 1 : 0.4);
+                    
+                // Show tooltip with full name if it's different from displayName
+                if (d.fullName && d.fullName !== d.displayName) {
+                    // Create or update tooltip
+                    let tooltip = d3.select('#node-tooltip');
+                    if (tooltip.empty()) {
+                        tooltip = d3.select('body').append('div')
+                            .attr('id', 'node-tooltip')
+                            .attr('class', 'node-tooltip');
+                    }
+                    
+                    // Position and show tooltip
+                    tooltip
+                        .style('left', (event.pageX + 10) + 'px')
+                        .style('top', (event.pageY - 30) + 'px')
+                        .style('display', 'block')
+                        .html(d.fullName);
+                }
+                
+                // Apply scale effect to current node
+                d3.select(this).select('circle')
+                    .transition().duration(200)
+                    .attr('r', d.radius * 1.05)
+                    .style('stroke-width', 2.5);
+            })            .on('mouseout', function() {
+                // Restore normal appearance with proper logarithmic scaling
+                linksSelection
+                    .style('stroke-opacity', d => linkOpacityScale(d.value))
+                    .style('stroke-width', d => {
+                        // Ensure we maintain the logarithmic scale when restoring
+                        return linkWidthScale(Math.max(d.value, 1));
+                    });
+                nodesSelection.style('opacity', 1);
+                
+                // Hide tooltip
+                d3.select('#node-tooltip')
+                    .style('display', 'none');
+                    
+                // Restore node size
+                d3.select(this).select('circle')
+                    .transition().duration(200)
+                    .attr('r', d => d.radius)
+                    .style('stroke-width', 2);
+            });        // Add enhanced aesthetic node design with gradients and proper sizing for name fit
         nodesSelection.append('circle')
             .attr('r', d => d.radius || nodeRadius)
-            .style('fill', d => colors(d.id))
+            .style('fill', d => d.gradientId ? `url(#${d.gradientId})` : colors(d.id))
             .style('stroke', '#ffffff')
-            .style('stroke-width', 1.5)
-            .style('opacity', 0.85);
-
-        // Add text labels showing the names
+            .style('stroke-width', 2)
+            .style('opacity', 0.95)
+            .style('filter', 'drop-shadow(0px 2px 3px rgba(0,0,0,0.15))');// Add text labels showing the names with enhanced styling for better fit
         nodesSelection.append('text')
-            .attr('dy', '.4em')
+            .attr('dy', '.35em') // Slightly adjust vertical centering
             .attr('text-anchor', 'middle')
             .text(d => d.displayName || d.name)
             .style('fill', '#ffffff')
-            .style('font-weight', '500')
-            .style('font-size', '12px') // Fixed size for better visibility
-            .style('font-family', "'Inter', sans-serif")
-            .style('pointer-events', 'none');        // Define the tick function - with improved centering
+            .style('font-weight', '600') // Bolder text for better readability
+            .style('font-size', d => {
+                // Dynamic font sizing based on display name length and node radius
+                const nameLength = (d.displayName || d.name).length;
+                if (nameLength > 4) {
+                    return Math.min(16, Math.max(11, d.radius / (nameLength * 0.4))) + 'px';
+                }
+                return '14px'; // Default size for short names
+            })
+            .style('letter-spacing', '0.02em') // Slightly improve letter spacing
+            .style('font-family', "'Inter', 'Segoe UI', sans-serif")
+            .style('pointer-events', 'none')
+            .style('text-shadow', '0 1px 2px rgba(0,0,0,0.2)'); // Add subtle text shadow for legibility// Define the tick function - with improved centering
         function ticked() {
             try {
                 // Keep nodes within bounds with better centering
@@ -325,15 +458,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Stop any ongoing simulation
         simulation.stop();
-        
-        // Update simulation with new data and forces
+          // Update simulation with new data and forces - better reflecting the logarithmic scaling
         simulation
             .nodes(graphData.nodes)
             .force('link', d3.forceLink(graphData.links).id(d => d.id)
-                .distance(d => 100 + ((maxLinkValue - d.value) * 5)) // Higher count = closer
-                .strength(d => 0.3 + (d.value / maxLinkValue * 0.7))) // Higher count = stronger connection
+                // Use logarithmic scale for link distances too - stronger links = closer nodes
+                .distance(d => {
+                    // Create a log scale for distance: stronger links = closer nodes
+                    const distanceScale = d3.scaleLog()
+                        .domain([Math.max(1, minLinkValue), Math.max(2, maxLinkValue)])
+                        .range([80, 160]) // Closer together for stronger links
+                        .clamp(true);
+                    return distanceScale(Math.max(1, maxLinkValue - d.value + 1));
+                })
+                .strength(d => 0.3 + (Math.log(d.value + 1) / Math.log(maxLinkValue + 1) * 0.7))) // Log-scaled strength
             .force('charge', d3.forceManyBody()
-                .strength(d => -300 - d.connections * 15)) // More connections = stronger repulsion
+                .strength(d => -4000 - d.connections * 15)) // More connections = stronger repulsion
             .force('center', d3.forceCenter(centerX, centerY).strength(0.1))
             .force('collision', d3.forceCollide().radius(d => d.radius * 1.2))
             .on('tick', ticked);
@@ -390,7 +530,6 @@ document.addEventListener('DOMContentLoaded', function() {
             badge.textContent = statusText;
             statusCell.appendChild(badge);
             
-            row.appendChild(statusCell);
             tableBody.appendChild(row);
         });
     }    // Initialize with sorted months and create slider markers

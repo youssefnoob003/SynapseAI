@@ -18,6 +18,7 @@
                                 <th>Performance Score</th>
                                 <th>Tasks Completed</th>
                                 <th>Tasks In Progress</th>
+                                <th>Security Score</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
@@ -36,6 +37,7 @@
                                 </td>
                                 <td>{{ employee.tasks_completed }}</td>
                                 <td>{{ employee.tasks_in_progress }}</td>
+                                <td>{{ employee.security_score }}</td>
                                 <td>
                                     <span class="badge {% if employee.score >= 90 %}bg-success{% elif employee.score >= 70 %}bg-info{% else %}bg-warning{% endif %}">
                                         {% if employee.score >= 90 %}Excellent{% elif employee.score >= 70 %}Good{% else %}Needs Improvement{% endif %}

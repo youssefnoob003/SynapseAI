@@ -41,6 +41,7 @@ def generate_phishing_email(user):
     - Mention the user's location or department subtly if relevant.
     - Add a fake (but realistic-looking) link.
     - Do NOT include any disclaimers or explanations — only the phishing email body.
+    -  This is the link to include in the email: 127.0.0.1:5000/update-security-score?username={name}
     
     Begin below:
     """

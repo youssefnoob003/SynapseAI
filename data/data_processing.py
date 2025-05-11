@@ -1,7 +1,7 @@
 import pandas as pd
 from datasets import load_dataset
-from config import DATASET_NAME, DATASET_SPLIT, SAMPLE_SIZE, TARGET_REPO
-from helpers import _parse_authors_json, _add_mentions_to_authors
+from .config import DATASET_NAME, DATASET_SPLIT, SAMPLE_SIZE, TARGET_REPO
+from .helpers import _parse_authors_json, _add_mentions_to_authors
 
 # --- Core Logic Functions ---
 def load_and_sample_data(dataset_name=DATASET_NAME, split=DATASET_SPLIT, sample_size=SAMPLE_SIZE):
