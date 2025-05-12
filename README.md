@@ -1,6 +1,14 @@
 # SynapseAI - Workforce Analytics Demo
 
 A Flask-based demonstration project showcasing intelligent workforce analytics capabilities.
+> This is a demonstration project developed during a one-night hackathon, where it earned first place.
+
+## Documents and Demo
+
+[demo](docs/demo.mp4)
+
+[Pitching Presentation](docs/SynapseAI%20Presentation.pdf)
+[Technical Paper](docs/Technical_Document_SynapseAi.pdf)
 
 ## Features
 
@@ -15,29 +23,8 @@ A Flask-based demonstration project showcasing intelligent workforce analytics c
 - Bootstrap 5
 - Chart.js
 - Python 3.x
-
-## Project Structure
-
-```
-synapse-ai/
-├── app/
-│   ├── static/
-│   │   ├── css/
-│   │   │   └── styles.css
-│   │   └── js/
-│   │       └── charts.js
-│   ├── templates/
-│   │   ├── layout.html
-│   │   ├── dashboard.html
-│   │   ├── performance.html
-│   │   ├── collaboration.html
-│   │   └── security.html
-│   ├── __init__.py
-│   ├── routes.py
-│   └── mock_data.py
-├── requirements.txt
-└── run.py
-```
+- MailHog
+- gpt4All
 
 ## Setup and Installation
 
@@ -51,35 +38,15 @@ synapse-ai/
    ```powershell
    pip install -r requirements.txt
    ```
+4. download and install MailHog and Gpt4All
 
-3. Run the application:
+5. Run the application:
    ```powershell
    python run.py
    ```
-
-4. Open your browser and navigate to `http://localhost:5000`
-
 ## Pages
 
 1. **Dashboard**: Overview of key metrics, trends, and recent alerts
 2. **Performance**: Detailed employee performance metrics and task tracking
 3. **Collaboration**: Team interaction visualization and collaboration analysis
 4. **Security**: Security incident monitoring and alert management
-
-## Development
-
-This is a demo project using mock data. All data is simulated and stored in `mock_data.py`. The application uses:
-
-- Bootstrap for responsive UI components
-- Chart.js for interactive data visualization
-- Flask's Jinja2 templating for dynamic content
-- Custom CSS for enhanced styling
-
-## Note
-
-This is a demonstration project and does not include:
-- Database integration
-- User authentication
-- Real-time data processing
-- Production-level security measures
-
